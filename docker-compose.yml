@@ -46,7 +46,7 @@ services:
       - "traefik.enable=false"
 
   keycloak:
-    image: jboss/keycloak:7.0.1
+    image: jboss/keycloak
     hostname: keycloak
     environment:
       - DB_VENDOR=POSTGRES
@@ -72,7 +72,7 @@ services:
     command: ["-b", "0.0.0.0", "-Dkeycloak.profile.feature.docker=enabled"]
   
   keycloak-gatekeeper:
-    image: keycloak/keycloak-gatekeeper:7.0.0
+    image: bitnami/keycloak-gatekeeper
     labels:
      - "traefik.port=3000"
      - "traefik.frontend.rule=Host:service1.lab.com"
@@ -87,7 +87,7 @@ services:
     volumes:
       - ./keycloak-gatekeeper/keycloak-gatekeeper.conf:/etc/keycloak-gatekeeper.conf
     entrypoint:
-      - /opt/keycloak-gatekeeper
+      - /keycloak-gatekeeper
       - --config=/etc/keycloak-gatekeeper.conf
   
   service_1:
