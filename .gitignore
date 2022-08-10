@@ -1,0 +1,3 @@
+# Remove the needed local files so we don't have them
+postgress_data/
+traefik/
